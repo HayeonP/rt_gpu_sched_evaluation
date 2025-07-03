@@ -1,0 +1,67 @@
+--- sched.c.orig	2025-01-05 13:14:08.000000000 +0900
++++ sched.c	2025-06-29 14:55:00.045394240 +0900
+@@ -589,6 +589,34 @@
+ 	nvgpu_mutex_release(&sched->status_lock);
+ }
+ 
++int gk20a_sched_rl_ctrl_init(struct gk20a *g) {
++	struct nvgpu_sched_ctrl *sched = &g->sched_ctrl;
++	struct nvgpu_rl_ctrl *rl_ctrl = &sched->rl_ctrl;
++
++	rl_ctrl->tsg_running = nvgpu_kzalloc(g, sched->bitmap_size);
++	if (!rl_ctrl->tsg_running) {
++		return -ENOMEM;
++	}
++
++	rl_ctrl->tsg_pending = nvgpu_kzalloc(g, sched->bitmap_size);
++	if (!rl_ctrl->tsg_pending) {
++		return -ENOMEM;
++	}
++	rl_ctrl->curr_tsgs_in_rl = nvgpu_kzalloc(g, sched->bitmap_size);
++	if (!rl_ctrl->curr_tsgs_in_rl) {
++		return -ENOMEM;
++	}
++
++	*rl_ctrl->tsg_running = 0;
++	*rl_ctrl->tsg_pending = 0;
++	*rl_ctrl->curr_tsgs_in_rl = 0;
++
++	rl_ctrl->rt_task_in_rl.pid = RL_CTRL_NO_RT_PID;
++	rl_ctrl->rt_task_in_rl.rt_prio = RL_CTRL_NO_RT_PRIO;
++
++	return 0;
++}
++
+ int gk20a_sched_ctrl_init(struct gk20a *g)
+ {
+ 	struct nvgpu_sched_ctrl *sched = &g->sched_ctrl;
+@@ -620,12 +648,21 @@
+ 		goto free_recent;
+ 	}
+ 
++	err = gk20a_sched_rl_ctrl_init(g);
++	if (err != 0) {
++		pr_warn("gk20a_sched_rl_ctrl_init failed!");
++		return err;
++	}
++
+ 	nvgpu_cond_init(&sched->readout_wq);
+ 
+ 	nvgpu_mutex_init(&sched->status_lock);
+ 	nvgpu_mutex_init(&sched->control_lock);
+ 	nvgpu_mutex_init(&sched->busy_lock);
+ 
++	nvgpu_mutex_init(&sched->sync_fence_lock);
++	rt_mutex_init(&sched->cs_lock);
++
+ 	sched->sw_ready = true;
+ 
+ 	return 0;
+@@ -653,5 +690,7 @@
+ 	nvgpu_mutex_destroy(&sched->control_lock);
+ 	nvgpu_mutex_destroy(&sched->busy_lock);
+ 
++	nvgpu_mutex_destroy(&sched->sync_fence_lock);
++
+ 	sched->sw_ready = false;
+ }

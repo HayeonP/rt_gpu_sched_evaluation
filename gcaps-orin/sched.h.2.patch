@@ -1,0 +1,10 @@
+--- sched.h.origin	2025-06-29 14:32:19.159779424 +0900
++++ sched.h	2025-06-29 14:35:27.924149389 +0900
+@@ -29,6 +29,7 @@
+ 
+ void gk20a_sched_ctrl_tsg_added(struct gk20a *, struct nvgpu_tsg *);
+ void gk20a_sched_ctrl_tsg_removed(struct gk20a *, struct nvgpu_tsg *);
++int gk20a_sched_rl_ctrl_init(struct gk20a *g);
+ int gk20a_sched_ctrl_init(struct gk20a *);
+ 
+ void gk20a_sched_ctrl_cleanup(struct gk20a *g);

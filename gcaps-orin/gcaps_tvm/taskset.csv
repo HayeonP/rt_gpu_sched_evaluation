@@ -1,0 +1,6 @@
+taskid,workload,period,wcet
+1,resnet18,2000,700
+2,resnet18,2000,700
+3,resnet18,2000,700
+4,resnet18,2000,700
+5,resnet18,2000,700

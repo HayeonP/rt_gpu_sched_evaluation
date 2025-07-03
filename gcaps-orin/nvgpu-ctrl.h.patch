@@ -1,0 +1,34 @@
+--- nvgpu-ctrl.h.backup	2025-06-29 12:54:46.438140156 +0900
++++ nvgpu-ctrl.h	2025-06-29 13:03:16.447156610 +0900
+@@ -1205,6 +1205,19 @@
+ 	__u32 flags;
+ };
+ 
++/* the sturct used to pass the arguments by each user program */
++struct nvgpu_gpu_runlist_update_rt_prio_args {
++	bool sync_mode; /* true if gpu sync-based mode is used */
++	/* [in] caller's pid */
++	pid_t pid;
++	/* 
++	 * [in] the caller wants to be added/removed to the runlist 
++	 * !add should be called when the at the end of the caller's function
++	 */
++	bool add_req;
++};
++
++
+ #define NVGPU_GPU_IOCTL_ZCULL_GET_CTX_SIZE \
+ 	_IOR(NVGPU_GPU_IOCTL_MAGIC, 1, struct nvgpu_gpu_zcull_get_ctx_size_args)
+ #define NVGPU_GPU_IOCTL_ZCULL_GET_INFO \
+@@ -1296,8 +1309,10 @@
+ 	_IOWR(NVGPU_GPU_IOCTL_MAGIC, 43, struct nvgpu_gpu_get_gpc_physical_map_args)
+ #define NVGPU_GPU_IOCTL_GET_GPC_LOCAL_TO_LOGICAL_MAP\
+ 	_IOWR(NVGPU_GPU_IOCTL_MAGIC, 44, struct nvgpu_gpu_get_gpc_logical_map_args)
++#define NVGPU_GPU_IOCTL_RUNLIST_UPDATE_RT_PRIO \
++	_IOWR(NVGPU_GPU_IOCTL_MAGIC, 45, struct nvgpu_gpu_runlist_update_rt_prio_args)
+ #define NVGPU_GPU_IOCTL_LAST		\
+-	_IOC_NR(NVGPU_GPU_IOCTL_GET_GPC_LOCAL_TO_LOGICAL_MAP)
++	_IOC_NR(NVGPU_GPU_IOCTL_RUNLIST_UPDATE_RT_PRIO)
+ #define NVGPU_GPU_IOCTL_MAX_ARG_SIZE	\
+ 	sizeof(struct nvgpu_gpu_get_cpu_time_correlation_info_args)
+ 
