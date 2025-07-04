@@ -2,3 +2,4 @@
 
 # Original repositories
 - GCAPS: https://github.com/rtenlab/gcaps-super-repo.git
+- CARSS: https://github.com/iljoobaek/cuMiddleware
