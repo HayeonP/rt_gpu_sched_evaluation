@@ -167,7 +167,7 @@ def excl_tag_fn(fn, name, def_period=0, def_deadline=0):
     noslack_flag will always be set
     shareable_flag will always be unset
     """
-    noslack_flag = True
+    noslack_flag = False # MODIFIED
     shareable_flag = False
     slacktime = 0
     @functools.wraps(fn)

@@ -218,7 +218,6 @@ int job_acquire_gpu(job_t *j) {
 	bool should_run_now = false;
 	// Priority queue jobs should be scheduled close to their deadline
 	if (use_slack || use_deadline || use_period) {
-		j->noslack_flag = true; // MODIFIED
 		if (j->noslack_flag) {
 			should_run_now = true;
 		} else {
@@ -439,6 +438,7 @@ int main(int argc, char **argv)
 		 */
 		while (!queued_wait_for_complete &&
 				fifo_jobs.size()) {
+			printf("fifo jobs size: %ld\n", fifo_jobs.size());
 			/* Peek at job from jobs_queued */
 			job_t *q_job = fifo_jobs.front();
 

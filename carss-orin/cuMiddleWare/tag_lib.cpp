@@ -62,6 +62,7 @@ int tag_job_begin(pid_t pid, pid_t tid, const char* job_name,
 		close(gb_fd);
 	}
 
+
 	/* Next, build a job_t in shared memory at shared memory location */
 	char job_shm_name[JOB_MEM_NAME_MAX_LEN];
 	job_t *tagged_job;
