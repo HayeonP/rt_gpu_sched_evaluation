@@ -42,7 +42,7 @@
     
     # Move and unzip the archive
     mv ~/Downloads/public_sources.tbz2 ~/build_dir
-    cd ~/build_dir && tar –xjvf public_sources.tbz2
+    cd ~/build_dir && tar -xjvf public_sources.tbz2
     
     # Unzip kernel source code
     cd ~/build_dir/Linux_for_Tegra/source
@@ -53,6 +53,9 @@
 
 * Setup a flashing environment
     ```bash
+    # Create a flash directory
+    mkdir ~/flash_dir
+     
    # Move the archive into the flash directory
    mv ~/Downloads/Jetson_Linux_R36.3.0_aarch64.tbz2 ~/flash_dir
    mv ~/Downloads/Tegra_Linux_Sample-Root-Filesystem_R36.3.0_aarch64.tbz2 ~/flash_dir
@@ -130,15 +133,15 @@
             version: 2
             renderer: NetworkManager
             ethernets:
-            eth0:
-                dhcp4: no
-                addresses:
-                    - 192.168.0.11/24
-                routes:
-                    - to: default
-                    via: 192.168.0.1
-                nameservers:
-                    addresses: [8.8.8.8, 8.8.4.4, 1.1.1.1]
+                eth0:
+                    dhcp4: no
+                    addresses:
+                        - 192.168.0.11/24
+                    routes:
+                        - to: default
+                        via: 192.168.0.1
+                    nameservers:
+                        addresses: [8.8.8.8, 8.8.4.4, 1.1.1.1]
         ```
 * (Orin) Apply configuration
     ```bash
