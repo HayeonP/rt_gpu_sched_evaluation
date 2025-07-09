@@ -10,7 +10,7 @@
                                 # fifo: First-In First-Out
                                 # lst: Least slack time first
 
-    # Execute tasks (in separate terminals)
+    # Execute tasks (in separate terminals) 
     # Task 1: Period is 2sec
     cd example/1_periodic_task
     sudo -E LD_LIBRARY_PATH=../../cuMiddleWare/lib -E PYTHONPATH=../../cuMiddleWare/python taskset -c 1 python3 1_periodic_task.py 2000

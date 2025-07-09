@@ -160,6 +160,12 @@
     echo 'export CMAKE_PREFIX_PATH="/usr/local/cuda:$CMAKE_PREFIX_PATH"' >> ~/.bashrc
     ```
 
+* (Orin) Add GLIBCC path
+    ```bash
+    echo '# GLIBCC' >> ~/.bashrc
+    echo 'export LD_LIBRARY_PATH="/usr/lib/aarch64-linux-gnu:$LD_LIBRARY_PATH"' >> ~/.bashrc
+    ```
+
 ### Set Orin to use 12 CPUs
 * Change mode
     ```bash

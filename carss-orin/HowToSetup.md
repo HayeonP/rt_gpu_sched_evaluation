@@ -8,6 +8,10 @@
 sudo apt install mesa-util freeglut3-dev libglu1-mesa-dev mesa-common-dev libglfw3-dev libglm-dev libgl1-mesa-dev
 ```
 
+### Install curl
+```bash
+sudo apt-get install libcurl4-openssl-dev
+```
 
 ### build
 ```bash
@@ -22,3 +26,4 @@ echo 'export PYTHONPATH="<workspace path>>/carss-orin/cuMiddleWare/python:$PYTHO
 source ~/.bashrc
 ```
 
+### Install opencv
