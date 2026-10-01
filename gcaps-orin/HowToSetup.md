@@ -72,12 +72,12 @@
     cd <workspace>/gcaps-orin
 
     # Patch
-    patch drivers/gpu/nvgpu/os/linux/ioctl_ctrl.c <path to file>/ioctl_ctrl.c.patch
-    patch drivers/gpu/nvgpu/os/linux/ioctl_ctrl.h <path to file>/ioctl_ctrl.h.patch
-    patch drivers/gpu/nvgpu/include/nvgpu/sched.h <path to file>/sched.h.patch
-    patch drivers/gpu/nvgpu/os/linux/sched.c <path to file/sched.c.patch
-    patch drivers/gpu/nvgpu/os/linux/sched.h <path to file/sched.h.2.patch
-    patch include/uapi/linux/nvgpu-ctrl.h <path to file>/nvgpu-ctrl.h
+    patch ~/build_dir_gcaps/Linux_for_Tegra/source/nvgpu/drivers/gpu/nvgpu/os/linux/ioctl_ctrl.c <path to file>/ioctl_ctrl.c.patch
+    patch ~/build_dir_gcaps/Linux_for_Tegra/source/nvgpu/drivers/gpu/nvgpu/os/linux/ioctl_ctrl.h <path to file>/ioctl_ctrl.h.patch
+    patch ~/build_dir_gcaps/Linux_for_Tegra/source/nvgpu/drivers/gpu/nvgpu/include/nvgpu/sched.h <path to file>/sched.h.patch
+    patch ~/build_dir_gcaps/Linux_for_Tegra/source/nvgpu/drivers/gpu/nvgpu/os/linux/sched.c <path to file/sched.c.patch
+    patch ~/build_dir_gcaps/Linux_for_Tegra/source/nvgpu/drivers/gpu/nvgpu/os/linux/sched.h <path to file/sched.h.2.patch
+    patch ~/build_dir_gcaps/Linux_for_Tegra/source/nvgpu/include/uapi/linux/nvgpu-ctrl.h <path to file>/nvgpu-ctrl.h.patch
     ```
 ### Build & Flash the kernel
 * Build
